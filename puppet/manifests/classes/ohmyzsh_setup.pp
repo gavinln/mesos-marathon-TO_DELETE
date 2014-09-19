@@ -14,9 +14,9 @@ class ohmyzsh_setup {
             #    require => Class['ohmyzsh'],
             #    before => Exec['vagrant_bash']
             #}
-            exec { "vagrant_bash":
-                command => "chsh -s /bin/zsh vagrant"
-            }
+            #exec { "vagrant_bash":
+            #    command => "chsh -s /bin/zsh vagrant"
+            #}
         }
     }
 }

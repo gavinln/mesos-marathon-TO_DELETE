@@ -14,16 +14,10 @@ class init {
             # to install software from other apt repositories.
             package { "python-software-properties":
                 ensure => present,
-                require => Exec['update_apt'];
+                #require => Exec['update_apt'];
             }
             #$misc_packages = ['make', 'curl', 'git-core', 'tmux']
             #package { $misc_packages:
-            #    ensure => present,
-            #    require => [
-            #        Exec['update_apt'],
-            #    ];
-            #}
-            #package { ['build-essential', 'checkinstall']:
             #    ensure => present,
             #    require => [
             #        Exec['update_apt'],

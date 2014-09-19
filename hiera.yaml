@@ -1,0 +1,9 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - "mesos"
+
+:yaml:
+  :datadir: '/vagrant/hiera'
