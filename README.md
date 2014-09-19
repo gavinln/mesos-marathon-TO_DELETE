@@ -33,23 +33,11 @@ the VM is started.
     ```
     vagrant up
     ```
-
 2. Connect to the VM
     ```
     vagrant ssh
     ```
-
 3. If you see the "Z Shell configuration function for new users" enter 2
-
-3. Start the server
-    ```bash
-    sudo start marathon
-    ```
-
-4. Open the notebook in the browser at the URL.
-    ```
-    http://localhost:8080/
-    ```
 
 ## Checking servers
 
@@ -59,19 +47,30 @@ the VM is started.
     ```
     sudo status zookeeper
     ```
-
 2. Connect to ZooKeeper (If successful you will see the word *CONNECTED*
     ```bash
     sudo /usr/share/zookeeper/bin/zkCli.sh -server localhost:2181
     ```
-
 3. Type `quit` to exit the *zkCli* application
 
 ### Checking Mesos
 
-1. Check whether Mesos-master is running
+1. Check whether the Mesos master is running
     ```
-    sudo status zookeeper
+    sudo status mesos-master
+    ```
+2. Access the Mesos master in the browser at the URL.
+    ```
+    http://localhost:5050/
+    ```
+3. Check whether the Mesos slave
+    ```
+    sudo status mesos-slave
+    ```
+4. Access the Mesos slave in the browser at the URL (a blank page without
+   errors indicates the slave is correctly started)
+    ```
+    http://localhost:5051/
     ```
 
 Requirements
