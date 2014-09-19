@@ -16,13 +16,13 @@ class init {
                 ensure => present,
                 #require => Exec['update_apt'];
             }
-            #$misc_packages = ['make', 'curl', 'git-core', 'tmux']
-            #package { $misc_packages:
-            #    ensure => present,
-            #    require => [
-            #        Exec['update_apt'],
-            #    ];
-            #}
+            $misc_packages = ['git-core', 'tmux']
+            package { $misc_packages:
+                ensure => present,
+                require => [
+                    Exec['update_apt'],
+                ];
+            }
         }
     }
 }

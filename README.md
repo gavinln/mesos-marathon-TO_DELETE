@@ -39,9 +39,9 @@ the VM is started.
     ```
 3. If you see the "Z Shell configuration function for new users" enter 2
 
-## Checking servers
+## Starting servers
 
-### Checking ZooKeeper
+### Starting ZooKeeper
 
 1. Check whether ZooKeeper is running
     ```
@@ -53,25 +53,81 @@ the VM is started.
     ```
 3. Type `quit` to exit the *zkCli* application
 
-### Checking Mesos
+### Starting Mesos
 
-1. Check whether the Mesos master is running
+1. Change to the scripts directory
+    ```bash
+    cd /vagrant/scripts
     ```
-    sudo status mesos-master
+2. Start tmux
+    ```bash
+    ./tmux_start.sh
     ```
-2. Access the Mesos master in the browser at the URL.
+3. Start mesos-master
     ```
-    http://localhost:5050/
+    sudo ./master_mesos_start.sh
     ```
-3. Check whether the Mesos slave
+4. Switch to the other pane. Type Ctrl+b, o
+
+5. Start mesos-slave
     ```
-    sudo status mesos-slave
+    sudo ./slave_mesos_start.sh
     ```
-4. Access the Mesos slave in the browser at the URL (a blank page without
-   errors indicates the slave is correctly started)
+6. Detach from the Tmux session. Type Ctrl+b, d
+
+7. To attach to the running session again
+    ```bash
+    tmux attach-session -t mesos
     ```
-    http://localhost:5051/
+8. Type Ctrl+c and exit to stop the mesos master and slave
+
+### Check Mesos servers
+
+1. Access the Mesos master in the browser at the URL http://localhost:5050/
+
+2. Access the Mesos slave in the browser at the URL http://localhost:5051/
+
+3. If you see a blank page without errors the slave is correctly started
+
+## Start Marathon
+
+1. sudo start marathon
+
+2. sudo status marathon
+
+3. Access Marathon in the browser at the URL. http://localhost:8080/
+
+## Setup the Python Flask application
+
+1. Go to the Marathon dashboard http://localhost:8080
+
+2. Create a new app by clicking on the "New App" button
+
+3. Enter the ID as flask-env
+
+4. Enter the command all on one line (blank lines may cause problems)
     ```
+    /usr/bin/python /vagrant/python/flask_env/run.py
+    ```
+
+5. Click "Create"
+
+6. Access the Flask application http://192.168.33.10:PORT
+
+## Setup the IPython application
+
+1. Go to the Marathon dashboard http://localhost:8080
+
+2. Create a new app by clicking on the "New App" button
+
+3. Enter the ID as ipython
+
+4. Enter the command all on one line (blank lines may cause problems)
+    ```
+    /usr/local/bin/ipython notebook --no-browser --ip=0.0.0.0 --port=$PORT
+    ```
+
+5. Click "Create"
 
 Requirements
 ------------

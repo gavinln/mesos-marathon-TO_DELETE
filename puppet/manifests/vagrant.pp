@@ -14,9 +14,10 @@ class dev {
     class {
         init:;
         repo_setup: require => Class[init];
-        #python_setup: require => Class[init];
+        python_setup: require => Class[init];
         ohmyzsh_setup: require => Class[init];
         mesos_setup: require => Class[repo_setup];
+        marathon_setup: require => Class[mesos_setup];
     }
 }
 
