@@ -1,0 +1,5 @@
+.librarian/*
+.tmp/*
+*.log
+spec/fixtures/modules/*
+pkg/*

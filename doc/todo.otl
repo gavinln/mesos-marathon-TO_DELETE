@@ -1,0 +1,15 @@
+Vagrantfile
+	Change to private networking
+	Remove port mapping for 2181, 5000
+Readme
+	Add info about Flask
+	info about IPython
+Puppet
+	Setup IPython
+	Setup Marathon
+Mesos
+	Change to localhost
+	Setup client and server automatically using Puppet
+Marathon
+	Setup using Puppet
+
