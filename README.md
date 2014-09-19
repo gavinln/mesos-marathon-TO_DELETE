@@ -30,13 +30,17 @@ the VM is started.
 ## Starting the virtual machine
 
 1. To start the virtual machine(VM) type
+
     ```
     vagrant up
     ```
+
 2. Connect to the VM
+
     ```
     vagrant ssh
     ```
+
 3. If you see the "Z Shell configuration function for new users" enter 2
 
 ## Starting servers
@@ -44,46 +48,60 @@ the VM is started.
 ### Starting ZooKeeper
 
 1. Check whether ZooKeeper is running
+
     ```
     sudo status zookeeper
     ```
+
 2. Connect to ZooKeeper (If successful you will see the word *CONNECTED*
+
     ```bash
     sudo /usr/share/zookeeper/bin/zkCli.sh -server localhost:2181
     ```
+
 3. Type `quit` to exit the *zkCli* application
 
 ### Starting Mesos
 
 1. Change to the scripts directory
+
     ```bash
     cd /vagrant/scripts
     ```
+
 2. Start tmux
+
     ```bash
     ./tmux_start.sh
     ```
+
 3. Start mesos-master
+
     ```
     sudo ./master_mesos_start.sh
     ```
+
 4. Switch to the other pane. Type Ctrl+b, o
 
 5. Start mesos-slave
+
     ```
     sudo ./slave_mesos_start.sh
     ```
+
 6. Detach from the Tmux session. Type Ctrl+b, d
 
 7. To attach to the running session again
+
     ```bash
     tmux attach-session -t mesos
     ```
+
 8. Type Ctrl+c and exit to stop the mesos master and slave
 
 ### Check Mesos servers
 
-1. Access the Mesos master in the browser at the URL http://localhost:5050/
+1. Access the Mesos master in the browser at the URL [http://localhost:5050/]
 
 2. Access the Mesos slave in the browser at the URL http://localhost:5051/
 
