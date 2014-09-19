@@ -101,9 +101,9 @@ the VM is started.
 
 ### Check Mesos servers
 
-1. Access the Mesos master in the browser at the URL [http://localhost:5050/]
+1. Access the [Mesos master](http://localhost:5050/) in the browser.
 
-2. Access the Mesos slave in the browser at the URL http://localhost:5051/
+2. Access the [Mesos slave](http://localhost:5051/) in the browser.
 
 3. If you see a blank page without errors the slave is correctly started
 
@@ -113,34 +113,36 @@ the VM is started.
 
 2. sudo status marathon
 
-3. Access Marathon in the browser at the URL. http://localhost:8080/
+3. Access [Marathon](http://localhost:8080/) in the browser at the URL.
 
 ## Setup the Python Flask application
 
-1. Go to the Marathon dashboard http://localhost:8080
+1. Go to the [Marathon](http://localhost:8080) dashboard
 
 2. Create a new app by clicking on the "New App" button
 
 3. Enter the ID as flask-env
 
 4. Enter the command all on one line (blank lines may cause problems)
+
     ```
     /usr/bin/python /vagrant/python/flask_env/run.py
     ```
 
 5. Click "Create"
 
-6. Access the Flask application http://192.168.33.10:PORT
+6. Access the Flask application by changing the port at `http://192.168.33.10:PORT`
 
 ## Setup the IPython application
 
-1. Go to the Marathon dashboard http://localhost:8080
+1. Go to the [Marathon](http://localhost:8080) dashboard
 
 2. Create a new app by clicking on the "New App" button
 
 3. Enter the ID as ipython
 
 4. Enter the command all on one line (blank lines may cause problems)
+
     ```
     /usr/local/bin/ipython notebook --no-browser --ip=0.0.0.0 --port=$PORT
     ```
