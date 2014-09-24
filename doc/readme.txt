@@ -7,7 +7,6 @@ cd /vagrant/scripts
 
 3. Make sure to set LIBPROCESS_IP (otherwise only one slave will be visible)
 LIBPROCESS_IP=192.168.33.10
-LIBPROCESS_IP=192.168.0.149
 
 4. Export the LIBPROCESS_IP
 export LIBPROCESS_IP
@@ -119,6 +118,39 @@ http://localhost:8080
 
 8. Click "Create"
 
+To setup Mesos with Docker
+1. Update hosts
+sudo vi /etc/hosts
+
+2. Add the following line
+127.0.0.1  localhost.localdomain
+
+3. Start the private registry
+docker run \
+    -d --name registry \
+    -e SETTINGS_FLAVOR=local \
+    -e STORAGE_PATH=/registry \
+    -v /tmp/registry:/registry \
+    -p 5000:5000 \
+    registry
+
+Add an image from the public registry to the private registry
+1. 
+# First, make sure you have the "ubuntu" repository:
+docker pull ubuntu
+
+# Then, find the image id that corresponds to the ubuntu repository
+docker images | grep ubuntu | grep latest
+ubuntu  latest  8dbd9e392a96  12 weeks ago  263 MB (virtual 263 MB)
+
+# Tag to create a repository with the full registry location.
+# The location becomes a permanent part of the repository name.
+docker tag 8dbd9e392a96 localhost.localdomain:5000/ubuntu
+
+# Finally, push the new repository to its home location.
+docker push localhost.localdomain:5000/ubuntu
+
+
 Setup haproxy
 See https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html
 1. Install haproxy
@@ -130,3 +162,5 @@ https://raw.githubusercontent.com/mesosphere/marathon/master/bin/haproxy-maratho
 ./haproxy-marathon-bridge 192.168.33.10:8080 > haproxy.cfg
 
 haproxy -f haproxy.cfg -p haproxy.pid -sf $(cat haproxy.pid)
+
+
