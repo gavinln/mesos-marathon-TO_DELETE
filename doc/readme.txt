@@ -3,7 +3,7 @@ Start Mesos master & slave
 cd /vagrant/scripts
 
 2. Start tmux with two panes
-./mesos_tmux.sh
+./tmux_start.sh
 
 3. Make sure to set LIBPROCESS_IP (otherwise only one slave will be visible)
 LIBPROCESS_IP=192.168.33.10
@@ -12,13 +12,13 @@ LIBPROCESS_IP=192.168.33.10
 export LIBPROCESS_IP
 
 4. Start Mesos master
-./mesos_master_start.sh
+sudo ./master_mesos_start.sh
 
 5. Switch to the other pane
 Type Ctrl+b, o
 
 6. Start Mesos slave (when starting slave of remove machine add --ip=)
-sudo ./mesos_slave_start.sh
+sudo ./slave_mesos_start.sh
 
 7. Detach from the Tmux session
 Type Ctrl+b, d
@@ -62,7 +62,7 @@ sudo start zookeeper
 2. Find status of ZooKeeper
 sudo status zookeeper
 
-3. Change to teh ZooKeeper directory
+3. Change to the ZooKeeper directory
 cd /usr/share/zookeeper/bin
 
 4. Test by connection to ZooKeeper (type quit to exit)
@@ -96,6 +96,11 @@ http://localhost:8080
 
 5. Click "Create"
 
+6. Go the web page http://192.168.33.10:CUSTOM_PORT
+
+7. To find the running process type
+sudo netstat -nltp | grep CUSTOM_PORT
+
 Setup IPython
 1. Install pyzmq
 sudo apt-get install python-zmq
@@ -113,10 +118,12 @@ http://localhost:8080
 
 6. Enter the ID as ipython1
 
-7. Enter the command all on one line (blank lines may cause problems)
+7. Make sure to only allocate 512 MB memory
+
+8. Enter the command all on one line (blank lines may cause problems)
 /usr/local/bin/ipython notebook --no-browser --ip=0.0.0.0 --port=$PORT
 
-8. Click "Create"
+9. Click "Create"
 
 To setup Mesos with Docker
 1. Update hosts
