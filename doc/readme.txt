@@ -131,7 +131,7 @@ docker run \
     -e SETTINGS_FLAVOR=local \
     -e STORAGE_PATH=/registry \
     -v /tmp/registry:/registry \
-    -p 5000:5000 \
+    -p 80:5000\
     registry
 
 Add an image from the public registry to the private registry
@@ -141,14 +141,17 @@ docker pull ubuntu
 
 # Then, find the image id that corresponds to the ubuntu repository
 docker images | grep ubuntu | grep latest
-ubuntu  latest  8dbd9e392a96  12 weeks ago  263 MB (virtual 263 MB)
+ubuntu  latest  53bf7a53e890  12 weeks ago  263 MB (virtual 263 MB)
 
 # Tag to create a repository with the full registry location.
 # The location becomes a permanent part of the repository name.
-docker tag 8dbd9e392a96 localhost.localdomain:5000/ubuntu
+docker tag 53bf7a53e890 localhost.localdomain/ubuntu
 
 # Finally, push the new repository to its home location.
-docker push localhost.localdomain:5000/ubuntu
+docker push localhost.localdomain/ubuntu
+
+# create a docker app by posting to Marathon using curl
+curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@docker.json
 
 
 Setup haproxy
