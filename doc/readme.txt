@@ -178,4 +178,8 @@ https://raw.githubusercontent.com/mesosphere/marathon/master/bin/haproxy-maratho
 
 haproxy -f haproxy.cfg -p haproxy.pid -sf $(cat haproxy.pid)
 
+In the file /etc/default/mesos-master the following line needs to be commented or mesos-master does not start
+ZK="zk://localhost:2181/mesos"
+
+instead create a file /etc/mesos/zk with the zookeper url
 
