@@ -1,4 +1,4 @@
-Start Mesos master & slave
+Start Mesos master & http://downloads.mesosphere.io/tutorials/PlayHello.zipslave
 1. Change to the scripts directory
 cd /vagrant/scripts
 
@@ -124,6 +124,11 @@ http://localhost:8080
 /usr/local/bin/ipython notebook --no-browser --ip=0.0.0.0 --port=$PORT
 
 9. Click "Create"
+
+To view the output of the slaves look at the following directory
+/tmp/mesos/slaves
+
+mesos ps --master=zk://localhost:2181/mesos
 
 To setup Mesos with Docker
 1. Update hosts

@@ -3,3 +3,6 @@ mesos::zookeeper   : 'zk://localhost:2181/mesos'
 mesos::master_port : 5050
 mesos::log_dir     : '/var/log/mesos'
 mesos::conf_dir    : '/etc/mesos'
+
+#mesos::master::cluster     : 'my_mesos_cluster'
+#mesos::master::log_dir     : '/var/log/mesos'

@@ -6,8 +6,9 @@ class mesos_setup {
     #class{ 'mesos::master':
     #    master_port => 5050,
     #    work_dir => '/var/lib/mesos',
+    #    zookeeper => 'zk://localhost:2181/mesos',
     #    options => {
-    #        log_dir => '/var/log/mesos',
+    #        log_dir => '/var/log/mesos'
     #    }
     #}
     #class{ 'mesos::slave':
