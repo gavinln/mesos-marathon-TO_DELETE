@@ -1,4 +1,4 @@
-Start Mesos master & slave
+Start Mesos master & http://downloads.mesosphere.io/tutorials/PlayHello.zipslave
 1. Change to the scripts directory
 cd /vagrant/scripts
 
@@ -145,6 +145,10 @@ vi ~/.mesos.json
     }
 }
 
+To view the output of the slaves look at the following directory
+/tmp/mesos/slaves
+
+mesos ps --master=zk://localhost:2181/mesos
 
 To setup Mesos with Docker
 1. Update hosts
@@ -194,4 +198,10 @@ https://raw.githubusercontent.com/mesosphere/marathon/master/bin/haproxy-maratho
 
 haproxy -f haproxy.cfg -p haproxy.pid -sf $(cat haproxy.pid)
 
+In the file /etc/default/mesos-master the following line needs to be commented or mesos-master does not start
+ZK="zk://localhost:2181/mesos"
 
+instead create a file /etc/mesos/zk with the zookeper url
+
+Deploy Docker containers with Marathon
+http://frankhinek.com/deploy-docker-containers-on-mesos-0-20/

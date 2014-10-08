@@ -1,0 +1,24 @@
+{
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "libmesos/ubuntu"
+		},
+		"volumes" : [ {
+			"containerPath": "/etc/a",
+			"hostPath": "/var/data/a",
+			"mode": "RO"
+		}, {
+			"containerPath": "/etc/b",
+			"hostPath": "/var/data/b",
+			"mode": "RW"
+		}
+		]
+	},
+	"id": "ubuntu",
+	"instances": "1",
+	"cpus": "1",
+	"mem": "784",
+	"uris": [],
+	"cmd": "while sleep 10; do date -u +%T; done"
+}
