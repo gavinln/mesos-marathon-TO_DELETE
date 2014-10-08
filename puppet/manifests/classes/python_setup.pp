@@ -13,6 +13,11 @@ class python_setup {
                 provider => pip,
                 require => Package['python-pip']
             }
+            #package { 'mesos.cli':
+            #    ensure => installed,
+            #    provider => pip,
+            #    require => Package['python-pip']
+            #}
             package { 'tornado':
                 ensure => installed,
                 provider => pip,

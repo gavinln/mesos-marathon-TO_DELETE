@@ -125,6 +125,27 @@ http://localhost:8080
 
 9. Click "Create"
 
+To install mesos.cli
+1. Install mesos.cli
+sudo pip install mesos.cli
+
+2. Add bash completion
+complete - C /usr/local/bin/mesos-completion
+
+3. Create a ~/.mesos.json file
+vi ~/.mesos.json
+
+4. Save the following JSON to .mesos.json
+{
+    "profile": "default",
+    "default": {
+        "master": "zk://localhost:2181/mesos",
+        "log_level": "warning",
+        "log_file": "/tmp/mesos-cli.log"
+    }
+}
+
+
 To setup Mesos with Docker
 1. Update hosts
 sudo vi /etc/hosts
