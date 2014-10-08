@@ -17,7 +17,7 @@
 	},
 	"id": "ubuntu",
 	"instances": "1",
-	"cpus": "0.5",
+	"cpus": "1",
 	"mem": "784",
 	"uris": [],
 	"cmd": "while sleep 10; do date -u +%T; done"
