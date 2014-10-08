@@ -183,3 +183,5 @@ ZK="zk://localhost:2181/mesos"
 
 instead create a file /etc/mesos/zk with the zookeper url
 
+Deploy Docker containers with Marathon
+http://frankhinek.com/deploy-docker-containers-on-mesos-0-20/

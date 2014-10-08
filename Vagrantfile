@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box"
 
-  # config.vm.provision "docker"
+  config.vm.provision "docker"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -115,7 +115,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifests_path = "puppet/manifests"
     puppet.module_path = "puppet/modules"
     puppet.hiera_config_path = "hiera.yaml"
-    puppet.options = "--verbose --debug"
+    # puppet.options = "--verbose --debug"
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
