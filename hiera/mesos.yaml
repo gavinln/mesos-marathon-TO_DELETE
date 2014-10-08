@@ -5,4 +5,4 @@ mesos::conf_dir    : '/etc/mesos'
 mesos::listen_address : '0.0.0.0'
 
 #mesos::master::cluster     : 'my_mesos_cluster'
-#mesos::master::log_dir     : '/var/log/mesos'
+mesos::master::log_dir     : '/var/log/mesos'

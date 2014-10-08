@@ -1,9 +1,7 @@
 # Mesos setup
 class mesos_setup {
-    #class { 'mesos':
-    #    ensure => present
-    #}
-    class{ 'mesos::master':
+    class { 'mesos':
+        ensure => present
     }
     #class{ 'mesos::master':
     #    master_port => 5050,
