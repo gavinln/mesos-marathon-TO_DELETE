@@ -13,6 +13,7 @@ Exec {
 class dev {
     class {
         init:;
+        docker:;
         repo_setup: require => Class[init];
         python_setup: require => Class[init];
         ohmyzsh_setup: require => Class[init];

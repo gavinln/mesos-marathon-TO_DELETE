@@ -16,6 +16,9 @@ $script = <<SCRIPT
     (puppet module list | grep acme-ohmyzsh) ||
         puppet module install -v 0.1.2 acme-ohmyzsh
 
+    (puppet module list | grep garethr-docker) ||
+        puppet module install -v 1.2.2 garethr-docker
+
 SCRIPT
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
