@@ -20,7 +20,7 @@
     ],
     "id": "python-app",
     "instances": 2,
-    "mem": 50,
+    "mem": 100,
     "ports": [
         0
     ],

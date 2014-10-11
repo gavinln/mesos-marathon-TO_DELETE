@@ -10,17 +10,13 @@ Exec {
     path => "/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin",
 }
 
-class dev {
-    class {
-        init:;
-        docker:;
-        repo_setup: require => Class[init];
-        python_setup: require => Class[init];
-        ohmyzsh_setup: require => Class[init];
-        mesos_setup: require => Class[repo_setup];
-        marathon_setup: require => Class[mesos_setup];
-    }
+class {
+    init: ;
+    mesos_setup: require => Class[init];
+    docker:;
+    python_setup:;
+    ohmyzsh_setup:;
+    marathon_setup: require => Class[mesos_setup];
 }
 
-include dev
 

@@ -13,11 +13,14 @@ $script = <<SCRIPT
     (puppet module list | grep puppetlabs-java) ||
         puppet module install -v 1.1.2 puppetlabs-java
 
-    (puppet module list | grep acme-ohmyzsh) ||
-        puppet module install -v 0.1.2 acme-ohmyzsh
+#    (puppet module list | grep acme-ohmyzsh) ||
+#        puppet module install -v 0.1.2 acme-ohmyzsh
 
     (puppet module list | grep garethr-docker) ||
         puppet module install -v 1.2.2 garethr-docker
+
+    (puppet module list | grep deric-mesos) ||
+        puppet module install -v 0.4.1 deric-mesos
 
 SCRIPT
 
@@ -56,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "public_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -116,8 +119,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "puppet" do |puppet|
     puppet.manifest_file  = "vagrant.pp"
     puppet.manifests_path = "puppet/manifests"
-    puppet.module_path = "puppet/modules"
     puppet.hiera_config_path = "hiera.yaml"
+    # puppet.module_path = "puppet/modules"
     # puppet.options = "--verbose --debug"
   end
 
