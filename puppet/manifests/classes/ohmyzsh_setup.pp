@@ -3,7 +3,6 @@ class ohmyzsh_setup {
     case $operatingsystem {
         ubuntu: {
             class { 'ohmyzsh':
-                require => Exec['update_apt']
             }
             # The following two do not work if git port is blocked
             #ohmyzsh::plugins { 'vagrant':
