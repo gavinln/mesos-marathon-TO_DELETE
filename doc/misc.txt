@@ -1,0 +1,94 @@
+Miscellaneous
+
+To install mesos.cli
+1. Install mesos.cli
+sudo pip install mesos.cli
+
+2. Add bash completion
+complete - C /usr/local/bin/mesos-completion
+
+3. Create a ~/.mesos.json file
+vi ~/.mesos.json
+
+4. Save the following JSON to .mesos.json
+{
+    "profile": "default",
+    "default": {
+        "master": "zk://localhost:2181/mesos",
+        "log_level": "warning",
+        "log_file": "/tmp/mesos-cli.log"
+    }
+}
+
+To view the output of the slaves look at the following directory
+/tmp/mesos/slaves
+
+To view the running processes
+mesos ps --master=zk://localhost:2181/mesos
+
+To setup Mesos with Docker
+1. Update hosts
+sudo vi /etc/hosts
+
+2. Add the following line
+127.0.0.1  localhost.localdomain
+
+3. Start the private registry
+docker run \
+    -d --name registry \
+    -e SETTINGS_FLAVOR=local \
+    -e STORAGE_PATH=/registry \
+    -v /tmp/registry:/registry \
+    -p 80:5000\
+    registry
+
+Add an image from the public registry to the private registry
+1. 
+# First, make sure you have the "ubuntu" repository:
+docker pull ubuntu
+
+# Then, find the image id that corresponds to the ubuntu repository
+docker images | grep ubuntu | grep latest
+ubuntu  latest  53bf7a53e890  12 weeks ago  263 MB (virtual 263 MB)
+
+# Tag to create a repository with the full registry location.
+# The location becomes a permanent part of the repository name.
+docker tag 53bf7a53e890 localhost.localdomain/ubuntu
+
+# Finally, push the new repository to its home location.
+docker push localhost.localdomain/ubuntu
+
+# create a docker app by posting to Marathon using curl
+curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@docker.json
+
+Setup haproxy
+See https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html
+1. Install haproxy
+sudo apt-get install haproxy
+
+Get script to setup haproxy.cfg
+https://raw.githubusercontent.com/mesosphere/marathon/master/bin/haproxy-marathon-bridge
+
+./haproxy-marathon-bridge 192.168.33.10:8080 > haproxy.cfg
+
+haproxy -f haproxy.cfg -p haproxy.pid -sf $(cat haproxy.pid)
+
+Deploy Docker containers with Marathon
+http://frankhinek.com/deploy-docker-containers-on-mesos-0-20/
+
+To install docker on ubuntu
+sudo apt-get update
+sudo apt-get install docker.io
+sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+
+To get the IPython notebook images
+1. Get the image
+sudo docker pull ipython/notebook
+
+2. Run the notebook
+sudo docker run -d -p 8888:8888 -e "PASSWORD=password1" ipython/notebook
+
+
+
+
