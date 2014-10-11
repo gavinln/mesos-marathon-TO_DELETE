@@ -13,8 +13,8 @@ $script = <<SCRIPT
     (puppet module list | grep puppetlabs-java) ||
         puppet module install -v 1.1.2 puppetlabs-java
 
-#    (puppet module list | grep acme-ohmyzsh) ||
-#        puppet module install -v 0.1.2 acme-ohmyzsh
+    (puppet module list | grep acme-ohmyzsh) ||
+        puppet module install -v 0.1.2 acme-ohmyzsh
 
     (puppet module list | grep garethr-docker) ||
         puppet module install -v 1.2.2 garethr-docker
