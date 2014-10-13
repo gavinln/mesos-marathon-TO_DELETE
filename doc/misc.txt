@@ -90,5 +90,7 @@ sudo docker pull ipython/notebook
 sudo docker run -d -p 8888:8888 -e "PASSWORD=password1" ipython/notebook
 
 
-
+Add port forwarding for running VM
+set /p VBOX_ID=<.vagrant\machines\default\virtualbox\id
+VBoxManage controlvm %VBOX_ID% natpf1 "tcp5000,tcp,,5000,,5000
 
