@@ -1,0 +1,7 @@
+ipython:
+  build: .
+  #command: python app.py
+  ports:
+  - "49152:8888"
+#  volumes:
+#  - .:/code

@@ -3,6 +3,7 @@ information. It should be run from the root directory of the project.
 '''
 import subprocess
 import os
+import sys
 import _winreg
 import json
 import ConfigParser
@@ -44,24 +45,41 @@ def getVMuuid():
     return open(idFullFile, 'r').read()
 
 
+def getPortForwarding(forwardingStr):
+    if forwardingStr.find(':') > 0:
+        [hostPort, guestPort] = forwardingStr.split(':')
+    else:
+        guestPort = forwardingStr
+        hostPort = guestPort
+
+    return "tcp%s,tcp,,%s,,%s" % (hostPort, hostPort, guestPort)
+
+
 def main():
-    virtualBoxDir = getVirtalBoxDir()
-    cmd = [os.path.join(virtualBoxDir, 'VBoxManage.exe'),
-           'showvminfo', getVMuuid(), '--machinereadable']
+    if len(sys.argv) > 1:
+        portForwardingStr = getPortForwarding(sys.argv[1])
+
+        virtualBoxDir = getVirtalBoxDir()
+        cmd = [os.path.join(virtualBoxDir, 'VBoxManage.exe'),
+               'controlvm', getVMuuid(), 'natpf1', portForwardingStr]
+        print cmd
+        output, err = call_command(cmd)
+        print output
+    else:
+        print 'incorrect number of arguments'
+
+    #cmd = [os.path.join(virtualBoxDir, 'VBoxManage.exe'),
+    #       'showvminfo', getVMuuid(), '--machinereadable']
     #cmd = [os.path.join(virtualBoxDir, 'VBoxManage.exe'),
     #        '--nologo', 'guestproperty', 'get', getVMuuid(),
     #        '/VirtualBox/GuestInfo/Net/1/V4/IP']
-    output, err = call_command(cmd)
-    configFile = StringIO.StringIO(output)
-    config = ConfigParser.SafeConfigParser()
-    config.readfp(configFile)
 
 
 # If machine is not running
 # VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i";
 
 # If machine is running
-#VBoxManage controlvm 7ff9c70f-f3fb-471f-ac3e-eded15d07daa natpf1 "tcp-port2,tcp,,9002,,9002
+#VBoxManage controlvm 7ff9c70f-f3fb-471f-ac3e-eded15d07daa natpf1 "tcp9002,tcp,,9002,,9002
 #VBoxManage showvminfo 7ff9c70f-f3fb-471f-ac3e-eded15d07daa --machinereadable | grep Forward
 
 if __name__ == "__main__":
