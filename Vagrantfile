@@ -22,6 +22,9 @@ $script = <<SCRIPT
     (puppet module list | grep deric-mesos) ||
         puppet module install -v 0.4.1 deric-mesos
 
+    (puppet module list | grep willdurand-nodejs) ||
+        puppet module install -v 1.8.3 willdurand-nodejs
+
 SCRIPT
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
