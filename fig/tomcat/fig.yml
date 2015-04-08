@@ -1,0 +1,7 @@
+tomcat:
+    build: .
+    ports:
+        - "8080"
+    volumes:
+        - ./workspace:/workspace
+
