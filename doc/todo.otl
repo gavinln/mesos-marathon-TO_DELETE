@@ -12,4 +12,6 @@ Mesos
 	Setup client and server automatically using Puppet
 Marathon
 	Setup using Puppet
+Misc
+	Add scripts to setup zsh
 

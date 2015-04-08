@@ -9,7 +9,7 @@ cd /vagrant/scripts
 LIBPROCESS_IP=192.168.33.10
 
 4. Export the LIBPROCESS_IP
-export LIBPROCESS_IP
+export LIBPROCESS_IP=192.168.33.10
 
 4. Start Mesos master
 sudo ./master_mesos_start.sh
@@ -117,5 +117,11 @@ curl -X GET -H "Content-Type: application/json" localhost:8080/v2/tasks | python
 
 3. Create a task using the Marathon REST api
 curl -i -H 'Content-Type: application/json' -d @PythonSimpleHTTPServer.json localhost:8080/v2/apps
+
+4. Create a Docker instance using the Marathon REST api
+curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@Docker.json
+
+5. Create a Tomcat Docker instance using the Marathon REST api
+curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@tomcat.json
 
 

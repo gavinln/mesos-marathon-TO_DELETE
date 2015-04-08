@@ -25,6 +25,8 @@ $script = <<SCRIPT
     (puppet module list | grep willdurand-nodejs) ||
         puppet module install -v 1.8.3 willdurand-nodejs
 
+    (puppet module list | grep puppetlabs-tomcat) ||
+        puppet module install -v 1.2.0 puppetlabs-tomcat
 SCRIPT
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
@@ -63,7 +65,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Forward mesos ports.
   config.vm.network "forwarded_port", guest: 5050, host: 5050
-  config.vm.network "forwarded_port", guest: 5051, host: 5051
+  # slave binds to localhost so need to forward port 5051 over ssh
+  # config.vm.network "forwarded_port", guest: 5051, host: 5051
 
   # Forward Marathon port.
   config.vm.network "forwarded_port", guest: 8080, host: 8080
