@@ -17,7 +17,7 @@ $script = <<SCRIPT
         puppet module install -v 0.1.2 acme-ohmyzsh
 
     (puppet module list | grep garethr-docker) ||
-        puppet module install -v 1.2.2 garethr-docker
+        puppet module install -v 2.0.0 garethr-docker
 
     (puppet module list | grep deric-mesos) ||
         puppet module install -v 0.4.1 deric-mesos
