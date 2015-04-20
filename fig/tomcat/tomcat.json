@@ -1,0 +1,17 @@
+{
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "tomcat_tomcat",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8080, "hostPort": 0 }
+      ]
+    }
+  },
+  "id": "tomcat",
+  "instances": 2,
+  "cpus": 0.25,
+  "mem": 400,
+  "uris": []
+}
