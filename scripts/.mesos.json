@@ -1,0 +1,12 @@
+{
+    "profile": "default",
+    "default": {
+        "master": "zk://localhost:2181/mesos",
+        "log_level": "warning",
+        "log_file": "/tmp/mesos-cli.log"
+    },
+    "credential": {
+	"principal": "sherman",
+	"secret": "kitesurf"
+    }
+}
