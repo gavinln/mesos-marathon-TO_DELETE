@@ -27,6 +27,10 @@ $script = <<SCRIPT
 
     (puppet module list | grep puppetlabs-tomcat) ||
         puppet module install -v 1.2.0 puppetlabs-tomcat
+
+    (puppet module list | grep rtyler-jenkins) ||
+        puppet module install -v 1.3.0 rtyler-jenkins
+
 SCRIPT
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
