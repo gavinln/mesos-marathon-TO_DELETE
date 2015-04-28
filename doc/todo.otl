@@ -57,6 +57,53 @@ Run Tomcat in container
 	8. Remove Tomcat images
 		sudo fig rm tomcat
 
+Start Mesos
+	1. Change to Mesos scripts directory
+		cd /vagrant/scripts
+
+	2. Start tmux
+		./tmux_start.sh
+
+	3. Start Mesos master
+		./master_mesos_start.sh
+
+	4. Type Ctrl+B, o to switch panes
+
+	5. Start Mesos slave
+		./slave_mesos_start.sh
+
+	6. Detach from window but keep it running by typing Ctrl+B, d
+
+Run Tomcat using Marathon
+	1. Set the ZooKeeper url by adding line zk://localhost:2181/mesos to the file
+		echo zk://localhost:2181/mesos | sudo tee /etc/mesos/zk
+
+	2. Start Marathon
+		sudo start marathon
+
+	3. Find the status of Marathon
+		sudo status marathon
+
+	4. Get Marathon info by opening browser to http://192.168.33.10:8080/v2/info
+
+	5. Change to directory containing Tomcat JSON config
+		cd /vagrant/fig/tomcat
+
+	6. Create a Tomcat Docker instance using the Marathon REST api
+		curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@tomcat.json
+
+	7. View processes for Tomcat in Docker
+		sudo netstat -nltp | grep docker-proxy
+
+	8. View a Docker Tomcat process
+		docker ps | grep tomcat_
+
+	9. Terminate a Docker container
+		docker stop 18b271e76150
+
+	10. Check dashboard for auto restart http://localhost:8080
+		
+
 Vagrantfile
 	Change to private networking
 	Remove port mapping for 2181, 5000
