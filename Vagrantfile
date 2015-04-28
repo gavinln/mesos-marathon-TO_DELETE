@@ -27,6 +27,10 @@ $script = <<SCRIPT
 
     (puppet module list | grep puppetlabs-tomcat) ||
         puppet module install -v 1.2.0 puppetlabs-tomcat
+
+    (puppet module list | grep rtyler-jenkins) ||
+        puppet module install -v 1.3.0 rtyler-jenkins
+
 SCRIPT
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
@@ -50,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box"
+  # config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box"
 
   #config.vm.provision "docker"
 
@@ -69,16 +73,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network "forwarded_port", guest: 5051, host: 5051
 
   # Forward Marathon port.
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  # config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+  # Forward zookeeper port
+  config.vm.network "forwarded_port", guest: 2181, host: 2181
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.33.10"
+  # config.vm.network :private_network, ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  config.vm.network "public_network"
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
