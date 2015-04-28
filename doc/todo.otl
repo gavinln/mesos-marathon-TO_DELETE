@@ -1,3 +1,62 @@
+Setup machine
+	: Use :set nolist to display this file
+	1. Start the machine
+		vagrant up
+	2. Login to the machine
+		vagrant ssh
+	3. Check zookeeper is running
+		sudo status zookeeper
+	4. Check mesos-master is not running
+		sudo status mesos-master
+	5. Check mesos-slave is not running
+		sudo status mesos-slave
+	6. Check marathon is not running
+		sudo status marathon
+	7. Add the vagrant user to the docker group
+		sudo gpasswd -a ${USER} docker
+	8. Logout and repeat step 1
+		exit
+
+Demo basic docker
+	1. Pull basic ubuntu image
+		docker pull ubuntu:14.04
+
+	2. Run command on VM
+		echo Hello world
+
+	3. Run command on container
+		docker run ubuntu:14.04 echo Hello world
+
+	4. Hostname of VM
+		hostname
+
+	5. Hostname of container
+		docker run ubuntu:14.04 hostname
+
+Run Tomcat in container
+	1. Change to tomcat docker directory
+		cd /vagrant/fig/tomcat
+
+	2. Start Tomcat
+		fig up -d
+
+	3. Get port for Tomcat
+		fig ps
+	
+	4. Open browser to Tomcat http://192.168.33.10:PORT/
+
+	5. Run Java servlet
+		http://192.168.33.10:32768/simple/hello
+
+	6. Scale Tomcat to multiple servers
+		sudo fig scale tomcat=3
+
+	7. Stop Tomcat containers
+		sudo fig stop
+
+	8. Remove Tomcat images
+		sudo fig rm tomcat
+
 Vagrantfile
 	Change to private networking
 	Remove port mapping for 2181, 5000

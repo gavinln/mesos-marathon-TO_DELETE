@@ -124,4 +124,14 @@ curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -
 5. Create a Tomcat Docker instance using the Marathon REST api
 curl -X POST -H "Content-Type: application/json" http://localhost:8080/v2/apps -d@tomcat.json
 
+Enable Docker without sudo
+1. Login as the user (vagrant)
+vagrant ssh
+
+2. Add the user to the docker group
+sudo gpasswd -a ${USER} docker
+
+3. Logout and repeat step 1
+exit
+
 

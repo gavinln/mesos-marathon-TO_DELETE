@@ -16,7 +16,7 @@ class {
     docker_setup:;
     python_setup:;
     ohmyzsh_setup:;
-    javascript: require => Class[init];
+    # javascript: require => Class[init];
     marathon_setup: require => Class[mesos_setup];
 }
 
