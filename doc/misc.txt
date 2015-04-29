@@ -91,3 +91,4 @@ session.json
     }
 }
 
+ sudo docker run -t -i -v /vagrant/java:/java -m 800m tomcat:6.0.43-jre7 java -cp //java MemLeak
