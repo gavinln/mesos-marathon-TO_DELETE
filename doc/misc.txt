@@ -68,3 +68,26 @@ Add port forwarding for running VM
 set /p VBOX_ID=<.vagrant\machines\default\virtualbox\id
 VBoxManage controlvm %VBOX_ID% natpf1 "tcp5000,tcp,,5000,,5000
 
+http --session abc http://tl-fqa-01:8100/engine/noop?user=12312 Admin-Name:U501 Admin-Password:F3password
+
+http --session=session.json http://tl-fqa-01:8100/engine/noop?user=12312
+
+session.json
+{
+    "__meta__": {
+        "about": "HTTPie session file",
+        "help": "https://github.com/jkbr/httpie#sessions",
+        "httpie": "0.8.0"
+    },
+    "auth": {
+        "password": null,
+        "type": null,
+        "username": null
+    },
+    "cookies": {},
+    "headers": {
+        "Admin-Name": "U501",
+        "Admin-Password": "F3password"
+    }
+}
+

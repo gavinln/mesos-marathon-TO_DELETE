@@ -103,6 +103,27 @@ Run Tomcat using Marathon
 
 	10. Check dashboard for auto restart http://localhost:8080
 		
+Use Docker from Windows
+	1. Setup the Docker host
+		set DOCKER_HOST=192.168.33.10:2375
+
+	2. List containers
+		docker ps
+
+	3. Access REST api url
+		curl --insecure https://mainline.feidev.com/api	
+
+	4. Get a httpie Docker image
+		docker pull clue/httpie
+
+	5. Setup Windows alias
+		doskey httpie=docker run -it --rm --net=host clue/httpie $*
+
+	6. Use httpie
+		httpie --verify=no https://mainline.feidev.com/api
+
+		httpie http://tl-fqa-01:8100/demo/engineswagger.act
+
 
 Vagrantfile
 	Change to private networking
