@@ -92,3 +92,35 @@ session.json
 }
 
  sudo docker run -t -i -v /vagrant/java:/java -m 800m tomcat:6.0.43-jre7 java -cp //java MemLeak
+
+To create a tunnel between slave and master
+MASTER_IP=10.0.0.100
+SLAVE_IP=10.0.0.200
+HOST_MASTER_IP=192.168.0.127
+
+Port 2200 on master host is mapped to master guest port 22
+
+/etc/ssh/sshd_config should contain the following
+ PermitRootLogin without-password
+ PermitTunnel yes
+
+sudo ssh -NTCf -w 0:0 -i private_key -p 2200 $HOST_MASTER_IP
+
+After connecting using ssh you should be able to see the tun0 interface on master and slave
+ip addr show tun0
+
+On master machine
+ip link set tun0 up
+ip addr add $MASTER_IP/32 peer $SLAVE_IP dev tun0
+
+On slave machine
+ip link set tun0 up
+ip addr add $SLAVE_IP/32 peer $MASTER_IP dev tun0
+
+Now ping to the other machine will work
+From master machine
+ping $SLAVE_IP
+
+From slave machine
+ping $MASTER_IP
+
