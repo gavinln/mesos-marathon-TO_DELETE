@@ -5,4 +5,8 @@
 
 IP=$(ip -o -4 addr show eth1 | grep -o 'inet [0-9\.]\+' | cut -f2 -d' ')
 
-sudo mesos-master --ip=$IP --work_dir=/var/lib/mesos --zk=zk://localhost:2181/mesos --log_dir=/var/log/mesos --quorum=1 --credentials=cred_master.json
+# sudo mesos-master --ip=$IP --work_dir=/var/lib/mesos --zk=zk://localhost:2181/mesos --log_dir=/var/log/mesos --quorum=1 --credentials=cred_master.json
+
+IP=10.0.0.100
+
+sudo mesos-master --ip=$IP --work_dir=/var/lib/mesos --log_dir=/var/log/mesos --quorum=1 --credentials=cred_master.json
