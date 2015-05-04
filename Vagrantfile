@@ -67,6 +67,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
 
+  # forwarding ssh port for tunneling
+  config.vm.network "forwarded_port", guest: 22, host: 2200
+
   # Forward mesos ports.
   config.vm.network "forwarded_port", guest: 5050, host: 5050
   # slave binds to localhost so need to forward port 5051 over ssh
